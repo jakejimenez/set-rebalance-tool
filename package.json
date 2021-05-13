@@ -1,0 +1,9 @@
+{
+  "name": "set-rebalance-tool",
+  "version": "0.1.0",
+  "description": "A tool to simplify the rebalancing process on the Set Protocol",
+  "main": "index.js",
+  "repository": "https://github.com/jakejimenez/set-rebalance-tool.git",
+  "author": "r00t1000 <jacob.jime@gmail.com>",
+  "license": "MIT"
+}
