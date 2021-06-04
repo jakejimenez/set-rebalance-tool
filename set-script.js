@@ -1,4 +1,8 @@
-const { ipcRenderer, MenuItem } = require('electron');
+// Dependencies 
+const {
+    ipcRenderer,
+    MenuItem
+} = require('electron');
 const Store = require('electron-store');
 const os = require('os');
 const fs = require('fs');
@@ -11,7 +15,10 @@ const db = new Store();
 var tempdb = sessionStorage;
 
 // Global variables
-var payload = { type: "STARTUP", payload: "system has started..." };
+var payload = {
+    type: "STARTUP",
+    payload: "system has started..."
+};
 var returnPayload;
 var percentageUsed = 0;
 var percentageAvailable = 100;
@@ -23,15 +30,30 @@ function remove(el) {
     document.getElementById(el).remove()
 }
 
-// IPC startup
+// IPC startup message, to see how fast everything is running
 returnPayload = ipcRenderer.sendSync('synchronous-message', JSON.stringify(payload));
 console.log(JSON.parse(returnPayload))
 
 // Check for setlist.txt on startup
 fs.readFile('./setlist.txt', (err, data) => {
+
+    // if theres an error, log it because we dont care, lineReader 
     if (err) console.log(err)
+
+    // get the token list from the DOM
     var tokenList = document.getElementById('token-list');
+
+    // test if its a name or a token input
+    // use a module called lineReader to read the setlist.txt, it gives an anonymous function with two parameters as the return value
     lineReader.eachLine('./setlist.txt', (line, last) => {
+        
+        var isToken = line.split('').includes('|');
+
+        if (!isToken) {
+            document.getElementById('name-input').value = line;
+        }
+
+        // split our lines up by their respective dividers, it could be easier with json, but this works
         var stringArr = line.split('|');
 
         // dom creation 
@@ -48,10 +70,15 @@ fs.readFile('./setlist.txt', (err, data) => {
         var quantityInput = document.createElement('input');
         var tokenListLength = document.getElementById("token-list").getElementsByTagName("li").length
 
-        tempdb.setItem((parseInt(tokenListLength) + 1).toString(), JSON.stringify({ 'name': stringArr[0], 'weight': stringArr[1], 'quantity': stringArr[2] }))
+        tempdb.setItem((parseInt(tokenListLength) + 1).toString(), JSON.stringify({
+            'name': stringArr[0],
+            'weight': stringArr[1],
+            'quantity': stringArr[2]
+        }))
 
         // setting id names
         tokenElement.id = (parseInt(tokenListLength) + 1).toString();
+        deleteButton.id = (parseInt(tokenListLength) + 1).toString()
 
         // setting class names
         tokenElement.className = "list__item"
@@ -59,18 +86,19 @@ fs.readFile('./setlist.txt', (err, data) => {
         coinInput.className = 'coin-input'
         buttoninputDiv.className = 'column'
         deleteButton.className = 'button is-danger is-light'
-        deleteButton.id = (parseInt(tokenListLength) + 1).toString()
-        deleteButton.addEventListener('click', function (e) {
-            e.currentTarget.parentNode.parentNode.parentNode.remove();
-            document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(stringArr[1],)
-            document.getElementById('weight-used').innerHTML = parseFloat(document.getElementById('weight-used').innerHTML) - parseFloat(stringArr[1])
-        }, false);
         weightinputDiv.className = 'column'
         weightInput.className = 'percentage-input'
-        weightInput.id = 'perinput'
+        weightInput.id = 'perinput-'+(parseInt(tokenListLength) + 1).toString();
         quantityinputDiv.className = 'column'
         quantityInput.className = 'quantity-input'
-        quantityInput.id = 'quaninput'
+        quantityInput.id = 'quaninput-'+(parseInt(tokenListLength) + 1).toString();
+
+        // setting listeners
+        deleteButton.addEventListener('click', function (e) {
+            e.currentTarget.parentNode.parentNode.parentNode.remove();
+            document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(stringArr[1], )
+            document.getElementById('weight-used').innerHTML = parseFloat(document.getElementById('weight-used').innerHTML) - parseFloat(stringArr[1])
+        }, false);
 
         // setting values
         coinInput.value = stringArr[0]
@@ -80,7 +108,7 @@ fs.readFile('./setlist.txt', (err, data) => {
 
 
         // calculations for percentage weightings
-        document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) - parseFloat(stringArr[1],)
+        document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) - parseFloat(stringArr[1], )
         document.getElementById('weight-used').innerHTML = parseFloat(document.getElementById('weight-used').innerHTML) + parseFloat(stringArr[1])
 
         // append token 
@@ -96,6 +124,7 @@ fs.readFile('./setlist.txt', (err, data) => {
         tokenList.appendChild(tokenElement);
         console.log("Adding token... " + stringArr[0])
 
+        // log the successful message
         console.log('Added successfully...')
     });
 });
@@ -110,7 +139,11 @@ document.getElementById('add-token').onclick = function () {
     var tokenListLength = document.getElementById("token-list").getElementsByTagName("li").length
 
     // set the session storage
-    tempdb.setItem((parseInt(tokenListLength) + 1).toString(), JSON.stringify({ 'name': tokenInput, 'weight': tokenWeight, 'quantity': tokenQuantity }))
+    tempdb.setItem((parseInt(tokenListLength) + 1).toString(), JSON.stringify({
+        'name': tokenInput,
+        'weight': tokenWeight,
+        'quantity': tokenQuantity
+    }))
 
     // dom creation 
     var tokenList = document.getElementById('token-list');
@@ -133,7 +166,11 @@ document.getElementById('add-token').onclick = function () {
             var quantityInput = document.createElement('input');
             var tokenListLength = document.getElementById("token-list").getElementsByTagName("li").length
 
-            tempdb.setItem((parseInt(tokenListLength) + 1).toString(), JSON.stringify({ 'name': tokenInput, 'weight': tokenWeight, 'quantity': tokenQuantity }))
+            tempdb.setItem((parseInt(tokenListLength) + 1).toString(), JSON.stringify({
+                'name': tokenInput,
+                'weight': tokenWeight,
+                'quantity': tokenQuantity
+            }))
 
             // setting id names
             tokenElement.id = (parseInt(tokenListLength) + 1).toString();
@@ -145,17 +182,12 @@ document.getElementById('add-token').onclick = function () {
             buttoninputDiv.className = 'column'
             deleteButton.className = 'button is-danger is-light'
             deleteButton.id = (parseInt(tokenListLength) + 1).toString()
-            deleteButton.addEventListener('click', function (e) {
-                e.currentTarget.parentNode.parentNode.parentNode.remove();
-                document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(tokenWeight)
-                document.getElementById('weight-used').innerHTML = parseFloat(document.getElementById('weight-used').innerHTML) - parseFloat(tokenWeight)
-            }, false);
             weightinputDiv.className = 'column'
             weightInput.className = 'percentage-input'
-            weightInput.id = 'perinput'
+            weightInput.id = 'perinput-'+(parseInt(tokenListLength) + 1).toString();
             quantityinputDiv.className = 'column'
             quantityInput.className = 'quantity-input'
-            quantityInput.id = 'quaninput'
+            quantityInput.id = 'quaninput-'+(parseInt(tokenListLength) + 1).toString();
 
             // setting values
             coinInput.value = tokenInput
@@ -163,10 +195,43 @@ document.getElementById('add-token').onclick = function () {
             quantityInput.value = tokenQuantity
             deleteButton.innerHTML = 'Delete'
 
+            // setting listeners
+            quantityInput.addEventListener('change', function (e) {
+                var oldVal = JSON.parse(tempdb.getItem((parseInt(tokenListLength) + 1).toString()));
+
+                var percentOfChange = parseFloat(this.value) / parseFloat(oldVal.quantity);
+                var newWeight = parseFloat(oldVal.weight) * percentOfChange;
+
+                document.getElementById('weight-used').innerHTML = (parseFloat(document.getElementById('weight-used').innerHTML) - parseFloat(oldVal.weight)).toFixed(2);
+                document.getElementById('weight-used').innerHTML = (parseFloat(document.getElementById('weight-used').innerHTML) + parseFloat(newWeight)).toFixed(2)
+
+                document.getElementById('weight-available').innerHTML = (parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(oldVal.weight)).toFixed(2)
+                document.getElementById('weight-available').innerHTML = (parseFloat(document.getElementById('weight-available').innerHTML) - parseFloat(newWeight)).toFixed(2)
+
+                
+                oldVal.weight = newWeight.toFixed(2);
+                oldVal.quantity = parseFloat(this.value).toFixed(2);
+
+                tempdb.setItem((parseInt(tokenListLength) + 1).toString(), JSON.stringify(oldVal))
+
+                weightInput.value = newWeight.toFixed(2);
+                
+            }, false);
+
+            deleteButton.addEventListener('click', function (e) {
+                e.currentTarget.parentNode.parentNode.parentNode.remove();
+                document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(tokenWeight)
+                document.getElementById('weight-used').innerHTML = parseFloat(document.getElementById('weight-used').innerHTML) - parseFloat(tokenWeight)
+            }, false);
+
 
             // calculations for percentage weightings
             document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) - parseFloat(tokenWeight)
             document.getElementById('weight-used').innerHTML = parseFloat(document.getElementById('weight-used').innerHTML) + parseFloat(tokenWeight)
+
+            if (parseFloat(document.getElementById('weight-used').innerHTML) == 100.0) {
+                document.getElementById('save-token').style.color = "green";
+            }
 
             // append token 
             outerDiv.appendChild(coininputDiv);
@@ -218,14 +283,15 @@ document.getElementById('save-token').onclick = function () {
 
     var tokenListLength = document.getElementById("token-list").getElementsByTagName("li").length;
 
+    // Open a file stream to save to text file
+    const CreateFiles = fs.createWriteStream('./setlist.txt', {
+        flags: 'a' //flags: 'a' preserved old data
+    });
+
     for (var i = 0; i <= tokenListLength; i++) {
         if (tempdb.getItem(i) == null) {
             console.log('Save file: null item found in sessions storage')
         } else {
-            // Open a file stream to save to text file
-            const CreateFiles = fs.createWriteStream('./setlist.txt', {
-                flags: 'a' //flags: 'a' preserved old data
-            });
 
             // format the token input and get it from session storage
             var token = JSON.parse(tempdb.getItem(i));
@@ -237,4 +303,7 @@ document.getElementById('save-token').onclick = function () {
             CreateFiles.write(saveStr + '\r\n')
         }
     }
+
+    CreateFiles.write(document.getElementById('name-input').value + '\r\n')
+    alert("Set has been saved as /setlist.txt");
 }

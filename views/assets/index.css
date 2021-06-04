@@ -1,398 +1,87 @@
 
-  .container__header {
-    text-align: center;
-    font-size: 150%;
-  }
-  
-  .container__description {
-    margin-bottom: 2.5em;
-    text-align: center;
-  }
-  
-  .padded, .list__item, input {
-    padding: 1em;
-  }
-  
-  @media (max-width: 500px) {
-    .container {
-      width: 80%;
-    }
-  }
-  
-  .pull-right {
-    float: right;
-  }
-  
-  input {
-    width: 100%;
-    box-shadow: inset 1px 1px 3px 0px rgba(134, 134, 134, 0.21);
-    border: 1px solid #C5C5C5;
-  }
+.card {
+  background-color: lightblue !important;
+}
 
-  .header-token-input {
-    border-style: none;
-    box-shadow: none !important;
-    text-align: center;
-    font-size: 100%;
-  }
+.container__header {
+  text-align: center;
+  font-size: 150%;
+}
 
-  .coin-input {
-    width: 70%;
-    float: left;
-    border-style: none;
-    box-shadow: none !important;
-  }
+.container__description {
+  margin-bottom: 2.5em;
+  text-align: center;
+}
 
-  .percentage-input {
-    width: 40%;
-    float: right;
-    border-style: none;
-    text-align: center;
-    box-shadow: none !important;
-  }
+.padded,
+.list__item,
+input {
+  padding: 1em;
+}
 
-  .quantity-input {
-    width: 40%;
-    float: right;
-    border-style: none;
-    text-align: center;
-    box-shadow: none !important;
-  }
-  
-  .list {
-    list-style: none;
-    margin-top: 4%;
-  }
-  
-  .list__item--inserting {
-    transform: translateY(-100%);
-    animation-name: slide-from-top;
-    animation-timing-function: ease-in-out;
-  }
-  
-  .list__item--inserting-new {
-    transform: translateY(-200%) scaleY(1);
-    animation-name: slide-from-top--new;
-  }
-  
-  .list__item--inserting-removed {
-    animation-name: slide-from-bottom--removed;
-  }
-  
-  .list__item--removing-sibling {
-    animation-name: slide-from-bottom;
-  }
-  
-  .list__item {
-    margin-bottom: 0.5em;
-    background-color: white;
-    border: 1px solid #C5C5C5;
-    border-radius: 3px;
-    backface-visibility: hidden;
-    box-shadow: 1px 1px 3px 0px rgba(134, 134, 134, 0.21);
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-  }
-  .list__item:nth-child(1) {
-    animation-delay: 0.075s;
-    z-index: 1;
-  }
-  .list__item:nth-child(2) {
-    animation-delay: 0.15s;
-    z-index: 2;
-  }
-  .list__item:nth-child(3) {
-    animation-delay: 0.225s;
-    z-index: 3;
-  }
-  .list__item:nth-child(4) {
-    animation-delay: 0.3s;
-    z-index: 4;
-  }
-  .list__item:nth-child(5) {
-    animation-delay: 0.375s;
-    z-index: 5;
-  }
-  .list__item:nth-child(6) {
-    animation-delay: 0.45s;
-    z-index: 6;
-  }
-  .list__item:nth-child(7) {
-    animation-delay: 0.525s;
-    z-index: 7;
-  }
-  .list__item:nth-child(8) {
-    animation-delay: 0.6s;
-    z-index: 8;
-  }
-  .list__item:nth-child(9) {
-    animation-delay: 0.675s;
-    z-index: 9;
-  }
-  .list__item:nth-child(10) {
-    animation-delay: 0.75s;
-    z-index: 10;
-  }
-  .list__item:nth-child(11) {
-    animation-delay: 0.825s;
-    z-index: 11;
-  }
-  .list__item:nth-child(12) {
-    animation-delay: 0.9s;
-    z-index: 12;
-  }
-  .list__item:nth-child(13) {
-    animation-delay: 0.975s;
-    z-index: 13;
-  }
-  .list__item:nth-child(14) {
-    animation-delay: 1.05s;
-    z-index: 14;
-  }
-  .list__item:nth-child(15) {
-    animation-delay: 1.125s;
-    z-index: 15;
-  }
-  .list__item:nth-child(16) {
-    animation-delay: 1.2s;
-    z-index: 16;
-  }
-  .list__item:nth-child(17) {
-    animation-delay: 1.275s;
-    z-index: 17;
-  }
-  .list__item:nth-child(18) {
-    animation-delay: 1.35s;
-    z-index: 18;
-  }
-  .list__item:nth-child(19) {
-    animation-delay: 1.425s;
-    z-index: 19;
-  }
-  .list__item:nth-child(20) {
-    animation-delay: 1.5s;
-    z-index: 20;
-  }
-  .list__item:nth-child(21) {
-    animation-delay: 1.575s;
-    z-index: 21;
-  }
-  .list__item:nth-child(22) {
-    animation-delay: 1.65s;
-    z-index: 22;
-  }
-  .list__item:nth-child(23) {
-    animation-delay: 1.725s;
-    z-index: 23;
-  }
-  .list__item:nth-child(24) {
-    animation-delay: 1.8s;
-    z-index: 24;
-  }
-  .list__item:nth-child(25) {
-    animation-delay: 1.875s;
-    z-index: 25;
-  }
-  .list__item:nth-child(26) {
-    animation-delay: 1.95s;
-    z-index: 26;
-  }
-  .list__item:nth-child(27) {
-    animation-delay: 2.025s;
-    z-index: 27;
-  }
-  .list__item:nth-child(28) {
-    animation-delay: 2.1s;
-    z-index: 28;
-  }
-  .list__item:nth-child(29) {
-    animation-delay: 2.175s;
-    z-index: 29;
-  }
-  .list__item:nth-child(30) {
-    animation-delay: 2.25s;
-    z-index: 30;
-  }
-  .list__item .icon-close {
-    display: none;
-  }
-  .list__item:hover .icon-close {
-    display: block;
-  }
-  
-  .list__item--new {
-    background-color: white;
-    transform-origin: 50% 0;
-  }
-  
-  .list--removing:nth-child(1) {
-    animation-delay: 0.075s;
-    z-index: 1;
-  }
-  .list--removing:nth-child(2) {
-    animation-delay: 0.15s;
-    z-index: 2;
-  }
-  .list--removing:nth-child(3) {
-    animation-delay: 0.225s;
-    z-index: 3;
-  }
-  .list--removing:nth-child(4) {
-    animation-delay: 0.3s;
-    z-index: 4;
-  }
-  .list--removing:nth-child(5) {
-    animation-delay: 0.375s;
-    z-index: 5;
-  }
-  .list--removing:nth-child(6) {
-    animation-delay: 0.45s;
-    z-index: 6;
-  }
-  .list--removing:nth-child(7) {
-    animation-delay: 0.525s;
-    z-index: 7;
-  }
-  .list--removing:nth-child(8) {
-    animation-delay: 0.6s;
-    z-index: 8;
-  }
-  .list--removing:nth-child(9) {
-    animation-delay: 0.675s;
-    z-index: 9;
-  }
-  .list--removing:nth-child(10) {
-    animation-delay: 0.75s;
-    z-index: 10;
-  }
-  .list--removing:nth-child(11) {
-    animation-delay: 0.825s;
-    z-index: 11;
-  }
-  .list--removing:nth-child(12) {
-    animation-delay: 0.9s;
-    z-index: 12;
-  }
-  .list--removing:nth-child(13) {
-    animation-delay: 0.975s;
-    z-index: 13;
-  }
-  .list--removing:nth-child(14) {
-    animation-delay: 1.05s;
-    z-index: 14;
-  }
-  .list--removing:nth-child(15) {
-    animation-delay: 1.125s;
-    z-index: 15;
-  }
-  .list--removing:nth-child(16) {
-    animation-delay: 1.2s;
-    z-index: 16;
-  }
-  .list--removing:nth-child(17) {
-    animation-delay: 1.275s;
-    z-index: 17;
-  }
-  .list--removing:nth-child(18) {
-    animation-delay: 1.35s;
-    z-index: 18;
-  }
-  .list--removing:nth-child(19) {
-    animation-delay: 1.425s;
-    z-index: 19;
-  }
-  .list--removing:nth-child(20) {
-    animation-delay: 1.5s;
-    z-index: 20;
-  }
-  .list--removing:nth-child(21) {
-    animation-delay: 1.575s;
-    z-index: 21;
-  }
-  .list--removing:nth-child(22) {
-    animation-delay: 1.65s;
-    z-index: 22;
-  }
-  .list--removing:nth-child(23) {
-    animation-delay: 1.725s;
-    z-index: 23;
-  }
-  .list--removing:nth-child(24) {
-    animation-delay: 1.8s;
-    z-index: 24;
-  }
-  .list--removing:nth-child(25) {
-    animation-delay: 1.875s;
-    z-index: 25;
-  }
-  .list--removing:nth-child(26) {
-    animation-delay: 1.95s;
-    z-index: 26;
-  }
-  .list--removing:nth-child(27) {
-    animation-delay: 2.025s;
-    z-index: 27;
-  }
-  .list--removing:nth-child(28) {
-    animation-delay: 2.1s;
-    z-index: 28;
-  }
-  .list--removing:nth-child(29) {
-    animation-delay: 2.175s;
-    z-index: 29;
-  }
-  .list--removing:nth-child(30) {
-    animation-delay: 2.25s;
-    z-index: 30;
-  }
-  
-  @keyframes slide-from-top {
-    30% {
-      transform: translateY(50%);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  @keyframes slide-from-top--new {
-    0% {
-      background-color: white;
-    }
-    10% {
-      background-color: #D3EBD3;
-    }
-    20% {
-      background-color: #D3EBD3;
-    }
-    30% {
-      transform: translateY(50%) scaleY(1);
-    }
-    100% {
-      background-color: white;
-      transform: translateY(0);
-    }
-  }
-  @keyframes slide-from-bottom {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-115%);
-    }
-  }
-  @keyframes slide-from-bottom--removed {
-    0% {
-      transform: translateY(0);
-    }
-    99.9% {
-      transform: translateY(-115%);
-      opacity: 0;
-    }
-  }
-  .list__item--inserting-removed {
-    z-index: -1 !important;
-  }
-  
-  .hidden {
-    position: absolute;
-  }
+@media (max-width: 500px) {
+  .container {
+    width: 80%;
+  }
+}
+
+.pull-right {
+  float: right;
+}
+
+input {
+  width: 100%;
+  box-shadow: inset 1px 1px 3px 0px rgba(134, 134, 134, 0.21);
+  border: 1px solid #C5C5C5;
+}
+
+.header-token-input {
+  border-style: none;
+  box-shadow: none !important;
+  text-align: center;
+  font-size: 100%;
+  background-color: lightblue !important;
+}
+
+.coin-input {
+  width: 70%;
+  float: left;
+  border-style: none;
+  box-shadow: none !important;
+}
+
+.percentage-input {
+  width: 40%;
+  float: right;
+  border-style: none;
+  text-align: center;
+  box-shadow: none !important;
+}
+
+.quantity-input {
+  width: 40%;
+  float: right;
+  border-style: none;
+  text-align: center;
+  box-shadow: none !important;
+}
+
+.list {
+  list-style: none;
+  margin-top: 4%;
+}
+
+.list__item {
+  margin-bottom: 0.5em;
+  background-color: white;
+  border: 1px solid #C5C5C5;
+  border-radius: 3px;
+  backface-visibility: hidden;
+  box-shadow: 1px 1px 3px 0px rgba(134, 134, 134, 0.21);
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.hidden {
+  position: absolute;
+}

@@ -24,6 +24,7 @@ function createWindow() {
     });
 
     win.loadFile('views/index.html');
+    //win.webContents.openDevTools();
 };
 
 // Listeners
