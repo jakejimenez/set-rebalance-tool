@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="assets/index.css">
+    <link rel="stylesheet" href="assets/bulma.min.css">
+    <link rel="stylesheet" href="assets/fontawesome.min.css">
+
+    <title>Set Rebalance Tool</title>
+
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="card">
+            <div class="card-content">
+              <p class="title">
+                Set Rebalance Tool
+              </p>
+
+              <div id="tokenList" class="token-list card-content">
+                <div class='container'>
+                  <div class='container__header'>
+                    <input id="name-input" class="header-token-input" value="Test Token">
+                  </div>
+                  <div class='container__description'>
+                  </div>
+                  <div class='columns'>
+                    <div class="column">
+                      <input style="border-radius: 10px;" id="token-input" class='list-input' placeholder='Add Token' type='text' value=''>
+                    </div>
+                    <div class="column">
+                      <input style="border-radius: 10px;" id="token-weight" class='list-input' placeholder='Add weight (%)' type='text' value=''>
+                    </div>
+                    <div class="column">
+                      <input style="border-radius: 10px;" id="token-quantity" class='list-input' placeholder='Add quantity' type='text' value=''>
+                    </div>
+                  </div>
+                  <ul id="token-list" class='list'>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <p class="card-footer-item">
+                <span>
+                    <a id="save-token" href="#">Save holdings</a>
+                </span>
+              </p>
+              <p class="card-footer-item">
+                <span>
+                    <strong>Available:</strong> <span id="weight-available">100</span>% | <strong>Used:</strong> <span id="weight-used">0</span>%
+                </span>
+              </p>
+              <p class="card-footer-item">
+                <span>
+                  <a id="add-token" href="#">Add Token</a>
+                </span>
+              </p>
+            </footer>
+          </div>
+      </div>
+    </section>
+
+    <script type="module" src="../set-script.js"></script>
+    </body>
+</html>

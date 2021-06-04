@@ -5,5 +5,16 @@
   "main": "index.js",
   "repository": "https://github.com/jakejimenez/set-rebalance-tool.git",
   "author": "r00t1000 <jacob.jime@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^14.0.0-beta.1"
+  },
+  "dependencies": {
+    "coingecko-api": "^1.0.10",
+    "electron-store": "^8.0.0",
+    "line-reader": "^0.4.0"
+  }
 }
