@@ -1,0 +1,5 @@
+Test 1|20.00%|5.00
+Test|50%|20
+Test 3|10%|5
+Test 4|20%|30
+Test Asset

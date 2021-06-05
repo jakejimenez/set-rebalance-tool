@@ -94,6 +94,28 @@ fs.readFile('./setlist.txt', (err, data) => {
         quantityInput.id = 'quaninput-'+(parseInt(tokenListLength) + 1).toString();
 
         // setting listeners
+        quantityInput.addEventListener('change', function (e) {
+            var oldVal = JSON.parse(tempdb.getItem((parseInt(tokenListLength) + 1).toString()));
+
+            var percentOfChange = parseFloat(this.value) / parseFloat(oldVal.quantity);
+            var newWeight = parseFloat(oldVal.weight) * percentOfChange;
+
+            document.getElementById('weight-used').innerHTML = (parseFloat(document.getElementById('weight-used').innerHTML) - parseFloat(oldVal.weight)).toFixed(2);
+            document.getElementById('weight-used').innerHTML = (parseFloat(document.getElementById('weight-used').innerHTML) + parseFloat(newWeight)).toFixed(2)
+
+            document.getElementById('weight-available').innerHTML = (parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(oldVal.weight)).toFixed(2)
+            document.getElementById('weight-available').innerHTML = (parseFloat(document.getElementById('weight-available').innerHTML) - parseFloat(newWeight)).toFixed(2)
+
+            
+            oldVal.weight = newWeight.toFixed(2);
+            oldVal.quantity = parseFloat(this.value).toFixed(2);
+
+            tempdb.setItem((parseInt(tokenListLength) + 1).toString(), JSON.stringify(oldVal))
+
+            weightInput.value = newWeight.toFixed(2);
+            
+        }, false);
+        
         deleteButton.addEventListener('click', function (e) {
             e.currentTarget.parentNode.parentNode.parentNode.remove();
             document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(stringArr[1], )
