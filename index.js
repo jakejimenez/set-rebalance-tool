@@ -10,8 +10,8 @@ function createWindow() {
 
     const win = new BrowserWindow({
         title: "Set Rebalance Tool",
-        width: 900,
-        height: 800,
+        width: 1200,
+        height: 700,
         autoHideMenuBar: true,
         titleBarStyle: "default",
         frame: true,

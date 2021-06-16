@@ -1,5 +1,15 @@
-Test 1|20.00%|5.00
-Test|50%|20
-Test 3|10%|5
-Test 4|20%|30
-Test Asset
+Uniswap|31.18%|0.231481
+Chainlink|22.96%|0.172101
+Aave|9.71%|0.005426
+Maker|6.17%|0.000346
+Wrapped Terra|5.93%|0.174051
+THORChain ERC20|4.25%|0.092478
+Yearn|3.45%|0.000016
+Compound|3.41%|0.001803
+Sushi|3.36%|0.063171
+Synthetix|3.06%|0.056409
+UMA|1.82%|0.026074
+0x|1.76%|0.328947
+Bancor Network Token|1.76%|0.075558
+Reserve Right|1.17%|6.502024
+Arkenstone DeFi Index Fund

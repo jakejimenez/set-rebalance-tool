@@ -118,8 +118,8 @@ fs.readFile('./setlist.txt', (err, data) => {
         
         deleteButton.addEventListener('click', function (e) {
             e.currentTarget.parentNode.parentNode.parentNode.remove();
-            document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(stringArr[1], )
-            document.getElementById('weight-used').innerHTML = parseFloat(document.getElementById('weight-used').innerHTML) - parseFloat(stringArr[1])
+            document.getElementById('weight-available').innerHTML = (parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(stringArr[1])).toFixed(2)
+            document.getElementById('weight-used').innerHTML = (parseFloat(document.getElementById('weight-used').innerHTML) - parseFloat(stringArr[1])).toFixed(2)
         }, false);
 
         // setting values
@@ -130,8 +130,8 @@ fs.readFile('./setlist.txt', (err, data) => {
 
 
         // calculations for percentage weightings
-        document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) - parseFloat(stringArr[1], )
-        document.getElementById('weight-used').innerHTML = parseFloat(document.getElementById('weight-used').innerHTML) + parseFloat(stringArr[1])
+        document.getElementById('weight-available').innerHTML = (parseFloat(document.getElementById('weight-available').innerHTML) - parseFloat(stringArr[1])).toFixed(2)
+        document.getElementById('weight-used').innerHTML = (parseFloat(document.getElementById('weight-used').innerHTML) + parseFloat(stringArr[1])).toFixed(2)
 
         // append token 
         outerDiv.appendChild(coininputDiv);
@@ -242,17 +242,19 @@ document.getElementById('add-token').onclick = function () {
 
             deleteButton.addEventListener('click', function (e) {
                 e.currentTarget.parentNode.parentNode.parentNode.remove();
-                document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(tokenWeight)
-                document.getElementById('weight-used').innerHTML = parseFloat(document.getElementById('weight-used').innerHTML) - parseFloat(tokenWeight)
+                document.getElementById('weight-available').innerHTML = (parseFloat(document.getElementById('weight-available').innerHTML) + parseFloat(tokenWeight)).toFixed(2)
+                document.getElementById('weight-used').innerHTML = (parseFloat(document.getElementById('weight-used').innerHTML) - parseFloat(tokenWeight)).toFixed(2)
             }, false);
 
 
             // calculations for percentage weightings
-            document.getElementById('weight-available').innerHTML = parseFloat(document.getElementById('weight-available').innerHTML) - parseFloat(tokenWeight)
-            document.getElementById('weight-used').innerHTML = parseFloat(document.getElementById('weight-used').innerHTML) + parseFloat(tokenWeight)
+            document.getElementById('weight-available').innerHTML = (parseFloat(document.getElementById('weight-available').innerHTML) - parseFloat(tokenWeight)).toFixed(2)
+            document.getElementById('weight-used').innerHTML = (parseFloat(document.getElementById('weight-used').innerHTML) + parseFloat(tokenWeight)).toFixed(2)
 
             if (parseFloat(document.getElementById('weight-used').innerHTML) == 100.0) {
                 document.getElementById('save-token').style.color = "green";
+            } else {
+                document.getElementById('save-token').style.color = "black";
             }
 
             // append token 
@@ -328,4 +330,16 @@ document.getElementById('save-token').onclick = function () {
 
     CreateFiles.write(document.getElementById('name-input').value + '\r\n')
     alert("Set has been saved as /setlist.txt");
+}
+
+// listener for reset
+document.getElementById('reset-list').onclick = function() {
+
+    document.getElementById("token-list").innerHTML = "";
+
+    tempdb.clear();
+
+    document.getElementById('weight-available').innerHTML = "100.00"
+    document.getElementById('weight-used').innerHTML = "0.00"
+    document.getElementById('name-input').value = "Test Asset";
 }
