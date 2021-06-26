@@ -4,14 +4,19 @@ This tool is used in conjunction primarily with the Set Protocol and more specif
 
 
 ## Features
-* Ability to rebalance a Set
+* Ability to rebalance a Sets or "baskets"
+* Ability to name Sets
 * Cross Platform
+* Reweight via quantity of asset
+* Save configuration of Sets for later usage
 
 ## Requirements
-* Mac OS / Windows PC
-* Download Zip file with tool executable
-* 
+* Mac OS / Windows / Linux (Untested)
+* Internet connection
 
+or
+
+* Install using one of the below methods
 
 ##  How to Install [EASY]
 
@@ -29,5 +34,5 @@ This tool is used in conjunction primarily with the Set Protocol and more specif
 
 ## Using the Set Rebalance Tool
 
-
+* Boot the exe file
 
